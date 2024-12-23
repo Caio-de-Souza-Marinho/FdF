@@ -8,9 +8,8 @@ Makefile.gen
 \#*\#
 
 ## Other
+*.swp
 .DS_STORE
-
-
 
 ## Template from https://github.com/github/gitignore
 # Prerequisites
