@@ -12,6 +12,7 @@ typedef struct s_vars
 
 int	deal_key(int key, void *param);
 void	ft_putstr(char *str);
+int	close_window(void *param);
 
 int	main(void)
 {
@@ -56,6 +57,9 @@ int	main(void)
 	// key hook event - press a key to trigger an event
 	mlx_key_hook(vars.win_ptr, deal_key, &vars);
 
+	// handle closing window with 'X' button
+	mlx_hook(vars.win_ptr, 17, 0, close_window, &vars);
+
 	// handle window events and drawing
 	mlx_loop(vars.mlx_ptr);
 	return (0);
@@ -67,7 +71,7 @@ int	deal_key(int key, void *param)
 
 	if (key == ESC_KEY)
 	{
-		mlx_destroy_window((void *)vars->mlx_ptr, vars->win_ptr);
+		close_window(vars);
 		ft_putstr("ESC pressed\n");
 		exit(0);
 	}
@@ -83,3 +87,13 @@ void	ft_putstr(char *str)
 		i++;
 	}
 }
+
+int	close_window(void *param)
+{
+	t_vars *vars = (t_vars *)param;
+
+	mlx_destroy_window(vars->mlx_ptr, vars->win_ptr);
+	exit(0);	
+	return (0);
+}
+
