@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:16:55 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/26 01:25:11 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/28 03:11:07 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,5 +180,19 @@ int		ft_tolower(int c);
  * @return The converted letter or 'c' if the conversion was not possible.
 */
 int		ft_toupper(int c);
+
+/* @brief Converts a string to an integer based on a specific base.
+ * This function interprets a given string as a number in the specified base
+ * and converts it to an integer. The function handles both positive and
+ * negative numbers, skipping leading whitespaces and optional signs.
+ *
+ * @param str the string to be converted
+ * @param base the base to interpret the number in (e.g., 10 for decimal,
+ * 16 for hexadecimal)
+ * @return The converted integer. If the string is invalid or cointains
+ * characters not allowed in the specified base, the result is undefined.
+ * Returns 0 if the convertion fails.
+*/
+int		ft_atoi_base(char *str, int base);
 
 #endif

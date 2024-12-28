@@ -6,17 +6,22 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:10:12 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/27 16:31:10 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/28 02:59:58 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 void	get_map_dimensions(t_map *map);
+void	allocate_map_points(t_map *map);
+void	parse_map(t_map *map);
+void	parse_line(t_map *map, char *line, int row);
 
 void	init_map(t_map *map)
 {
 	get_map_dimensions(map);
+	allocate_map_points(map);
+	parse_map(map);
 }
 
 void	get_map_dimensions(t_map *map)
@@ -39,8 +44,63 @@ void	get_map_dimensions(t_map *map)
 		map->height++;
 		line = get_next_line(fd);
 	}
-	ft_printf("map w: %d\n", map->width);
-	ft_printf("map h: %d\n", map->height);
 	close(fd);
+}
 
+void	allocate_map_points(t_map *map)
+{
+	int	row;
+
+	map->points = malloc(sizeof(t_point *) * map->height);
+	if (map->points == NULL)
+		map_error("Memory allocation failed for map rows.");
+	row = 0;
+	while (row < map->height)
+	{
+		map->points[row] = malloc(sizeof(t_point) * map->width);
+		if (map->points[row] == NULL)
+			map_error("Memory allocation failed for map columns.");
+		row++;
+	}
+}
+
+void	parse_map(t_map *map)
+{
+	int		fd;
+	int		row;
+	char	*line;
+
+	fd = open(map->path, O_RDONLY);
+	if (fd < 0)
+		map_error("Map not found.");
+	row = 0;
+	line = get_next_line(fd);
+	while (line)
+	{
+		parse_line(map, line, row);
+		free(line);
+		row++;
+		line = get_next_line(fd);
+	}
+	close(fd);
+}
+
+void	parse_line(t_map *map, char *line, int row)
+{
+	int		col;
+	char	**split_line;
+
+	split_line = ft_split(line, ' ');
+	if (split_line == NULL)
+		map_error("Memory allocation failed while splitting the line.");
+	col = 0;
+	while (col < map->width)
+	{
+		map->points[row][col].x = col;
+		map->points[row][col].y = row;
+		map->points[row][col].z = ft_atoi(split_line[col]);
+		map->points[row][col].color = parse_color(split_line[col]);
+		col++;
+	}
+	free_split(split_line);
 }

@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/27 16:34:11 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/28 04:43:27 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ typedef struct s_map
 // map
 void	init_map(t_map *map);
 void	get_map_dimensions(t_map *map);
+void	allocate_map_points(t_map *map);
+void	parse_map(t_map *map);
+void	parse_line(t_map *map, char *line, int row);
+
+// map utils
+void	free_split(char **split);
+void	free_map(t_map *map);
+int		parse_color(char *value);
 
 // errors
 void	map_error(char *s);
