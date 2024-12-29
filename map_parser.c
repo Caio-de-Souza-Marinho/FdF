@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 void	get_map_dimensions(t_map *map);
 void	allocate_map_points(t_map *map);
@@ -39,10 +39,13 @@ void	get_map_dimensions(t_map *map)
 	split_line = ft_split(line, ' ');
 	while (split_line[map->width] != NULL)
 		map->width++;
+	free_split(split_line);
+	free(line);
 	while (line != NULL)
 	{
 		map->height++;
 		line = get_next_line(fd);
+		free(line);
 	}
 	close(fd);
 }
@@ -72,7 +75,7 @@ void	parse_map(t_map *map)
 
 	fd = open(map->path, O_RDONLY);
 	if (fd < 0)
-		map_error("Map not found.");
+		map_error("ERROR: Map not found.");
 	row = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -88,12 +91,21 @@ void	parse_map(t_map *map)
 void	parse_line(t_map *map, char *line, int row)
 {
 	int		col;
+	int		col_count;
 	char	**split_line;
 
 	split_line = ft_split(line, ' ');
+	col_count = 0;
 	if (split_line == NULL)
 		map_error("Memory allocation failed while splitting the line.");
 	col = 0;
+	while (split_line[col_count] != NULL)
+		col_count++;
+	if (col_count != map->width)
+	{
+		free_split(split_line);
+		map_error("ERROR: Inconsistent row lenght in the map");
+	}
 	while (col < map->width)
 	{
 		map->points[row][col].x = col;

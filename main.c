@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/fdf.h"
+#include "fdf.h"
 
 int	main(int argc, char *argv[])
 {
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		ft_printf("Usage: .fdf/ <map_file>\n");
+		ft_printf("ERROR: Invalid input\nUsage: .fdf/ <map_file>\n");
 		return (1);
 	}
 	map.path = argv[1];
