@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 02:32:36 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/28 04:43:17 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/30 02:38:05 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,3 +49,27 @@ int	parse_color(char *value)
 		return (ft_atoi_base(comma + 1, 16));
 	return (DEFAULT_COLOR);
 }
+
+/*
+int	scale_win(t_map *map, int display_size, char type)
+{
+	int	res;
+	
+	res = 0;
+	if (type == 'W')
+	{
+		if (map->width * 2 < display_size)
+			return (map->width * 10);
+		else
+			return (display_size);
+	}
+	else if (type == 'H')
+	{
+		if (map->height * 2 < display_size)
+			return (map->height * 10);
+		else
+			return (display_size);
+	}
+	return (res);
+}
+*/

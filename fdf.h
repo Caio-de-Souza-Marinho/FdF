@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/28 04:43:27 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/30 02:34:42 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef struct s_point
 	int	y;
 	int	z;
 	int	color;
+	int	screen_x;
+	int	screen_y;
 }	t_point;
 
 typedef struct s_map
@@ -64,6 +66,8 @@ typedef struct s_fdf
 {
 	void	*mlx;
 	void	*win;
+//	int		win_width;
+//	int		win_height;
 	t_img	img;
 	t_map	map;
 }	t_fdf;
@@ -75,10 +79,14 @@ void	init_map(t_map *map);
 void	free_split(char **split);
 void	free_map(t_map *map);
 int		parse_color(char *value);
+int		scale_win(t_map *map, int display_size, char type);
 
 // errors
 void	map_error(char *s);
 void	img_error(t_fdf *fdf, char *s);
 void	img_addr_error(t_fdf *fdf, char *s);
+
+// render
+void	render_map(t_fdf *fdf);
 
 #endif

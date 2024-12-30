@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:55:09 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/28 04:44:49 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/30 02:39:23 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ int	main(int argc, char *argv[])
 		free_map(&fdf.map);
 		return (1);
 	}
-	// TODO: render function
-	// TODO: mlx_put_image_to_window();
+	render_map(&fdf);
+	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img.img, 0, 0);
 	mlx_loop(fdf.mlx);
 	free_map(&fdf.map);
 	return (0);
@@ -42,12 +42,26 @@ int	main(int argc, char *argv[])
 
 static int	init_window(t_fdf *fdf)
 {
+	/*
+	int	screen_width;
+	int	screen_height;
+	int	win_width;
+	int	win_height;
+	*/
+
 	fdf->mlx = mlx_init();
 	if (fdf->mlx == NULL)
 	{
 		ft_printf("ERROR: MLX initialization failed\n");
 		return (0);
 	}
+	/*
+	mlx_get_screen_size(fdf->mlx, &screen_width, &screen_height);
+	win_width = scale_win(&fdf->map, screen_width, 'W');
+	win_height = scale_win(&fdf->map, screen_height, 'H');
+	fdf->win_width = win_width;
+	fdf->win_height = win_height;
+	*/
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	if (fdf->win == NULL)
 	{
@@ -65,6 +79,7 @@ static void	init_img(t_fdf *fdf)
 	int	size_line;
 	int	endian;
 
+	//fdf->img.img = mlx_new_image(fdf->mlx, fdf->win_width, fdf->win_height);
 	fdf->img.img = mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (fdf->img.img == NULL)
 		img_error(fdf, "ERROR: Image creation failed\n");

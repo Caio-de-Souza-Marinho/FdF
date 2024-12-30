@@ -15,7 +15,8 @@ TEST_FILE	?= maps/teste.fdf
 SRCS		= $(SRC_DIR)main.c \
 		  $(SRC_DIR)map_parser.c \
 		  $(SRC_DIR)map_utils.c \
-		  $(SRC_DIR)errors.c
+		  $(SRC_DIR)errors.c \
+		  $(SRC_DIR)render.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 
