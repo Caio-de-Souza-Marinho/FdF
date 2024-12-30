@@ -17,6 +17,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  $(SRC_DIR)map_utils.c \
 		  $(SRC_DIR)errors.c \
 		  $(SRC_DIR)render.c \
+		  $(SRC_DIR)draw.c \
+		  $(SRC_DIR)bresenham.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 

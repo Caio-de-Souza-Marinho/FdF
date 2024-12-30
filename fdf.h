@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/30 02:34:42 by caide-so         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:11:13 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # endif
 
 # ifndef MIN_SCALE
-#  define MIN_SCALE 1.5
+#  define MIN_SCALE 1.0
 # endif
 
 typedef struct s_point
@@ -76,6 +76,15 @@ typedef struct s_fdf
 	t_map	map;
 }	t_fdf;
 
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int	err;
+	int	step_x;
+	int	step_y;
+}	t_bresenham;
+
 // map
 void	init_map(t_map *map);
 
@@ -92,5 +101,11 @@ void	img_addr_error(t_fdf *fdf, char *s);
 
 // render
 void	render_map(t_fdf *fdf);
+
+// draw
+void	draw(t_fdf *fdf);
+
+// bresenham
+void	bresenham(t_img *img, int *coords, int color);
 
 #endif
