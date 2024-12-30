@@ -11,20 +11,69 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "lib/minilibx-linux/mlx.h"
+
+static int	init_window(t_fdf *fdf);
+static void	init_img(t_fdf *fdf);
 
 int	main(int argc, char *argv[])
 {
-	t_map	map;
+	t_fdf	fdf;
 
 	if (argc != 2)
 	{
 		ft_printf("ERROR: Invalid input\nUsage: .fdf/ <map_file>\n");
 		return (1);
 	}
-	map.path = argv[1];
-	init_map(&map);
-	free_map(&map);
+	fdf.map.path = argv[1];
+	init_map(&fdf.map);
+	if (!init_window(&fdf))
+	{
+		ft_printf("ERROR: Failed to initialize the window\n");
+		free_map(&fdf.map);
+		return (1);
+	}
+	// TODO: render function
+	// TODO: mlx_put_image_to_window();
+	mlx_loop(fdf.mlx);
+	free_map(&fdf.map);
 	return (0);
+}
+
+static int	init_window(t_fdf *fdf)
+{
+	fdf->mlx = mlx_init();
+	if (fdf->mlx == NULL)
+	{
+		ft_printf("ERROR: MLX initialization failed\n");
+		return (0);
+	}
+	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
+	if (fdf->win == NULL)
+	{
+		free(fdf->mlx);
+		ft_printf("ERROR: Window creation failed\n");
+		return (0);
+	}
+	init_img(fdf);
+	return (1);
+}
+
+static void	init_img(t_fdf *fdf)
+{
+	int	bpp;
+	int	size_line;
+	int	endian;
+
+	fdf->img.img = mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (fdf->img.img == NULL)
+		img_error(fdf, "ERROR: Image creation failed\n");
+	fdf->img.addr = mlx_get_data_addr(fdf->img.img, &bpp, &size_line, &endian);
+	if (fdf->img.addr == NULL)
+		img_addr_error(fdf, "ERROR: Failed to get image data address\n");
+	fdf->img.bits_per_pixel = bpp;
+	fdf->img.size_line = size_line;
+	fdf->img.endian = endian;
 }
 
 /*

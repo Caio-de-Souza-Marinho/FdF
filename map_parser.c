@@ -12,10 +12,10 @@
 
 #include "fdf.h"
 
-void	get_map_dimensions(t_map *map);
-void	allocate_map_points(t_map *map);
-void	parse_map(t_map *map);
-void	parse_line(t_map *map, char *line, int row);
+static void	get_map_dimensions(t_map *map);
+static void	allocate_map_points(t_map *map);
+static void	parse_map(t_map *map);
+static void	parse_line(t_map *map, char *line, int row);
 
 void	init_map(t_map *map)
 {
@@ -24,7 +24,7 @@ void	init_map(t_map *map)
 	parse_map(map);
 }
 
-void	get_map_dimensions(t_map *map)
+static void	get_map_dimensions(t_map *map)
 {
 	int		fd;
 	char	*line;
@@ -50,7 +50,7 @@ void	get_map_dimensions(t_map *map)
 	close(fd);
 }
 
-void	allocate_map_points(t_map *map)
+static void	allocate_map_points(t_map *map)
 {
 	int	row;
 
@@ -67,7 +67,7 @@ void	allocate_map_points(t_map *map)
 	}
 }
 
-void	parse_map(t_map *map)
+static void	parse_map(t_map *map)
 {
 	int		fd;
 	int		row;
@@ -88,7 +88,7 @@ void	parse_map(t_map *map)
 	close(fd);
 }
 
-void	parse_line(t_map *map, char *line, int row)
+static void	parse_line(t_map *map, char *line, int row)
 {
 	int		col;
 	int		col_count;

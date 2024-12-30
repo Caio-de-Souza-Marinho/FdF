@@ -47,5 +47,5 @@ int	parse_color(char *value)
 	comma = ft_strchr(value, ',');
 	if (comma != NULL)
 		return (ft_atoi_base(comma + 1, 16));
-	return (0xFFFFFF);
+	return (DEFAULT_COLOR);
 }
