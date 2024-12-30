@@ -55,13 +55,7 @@ static int	init_window(t_fdf *fdf)
 		ft_printf("ERROR: MLX initialization failed\n");
 		return (0);
 	}
-	/*
-	mlx_get_screen_size(fdf->mlx, &screen_width, &screen_height);
-	win_width = scale_win(&fdf->map, screen_width, 'W');
-	win_height = scale_win(&fdf->map, screen_height, 'H');
-	fdf->win_width = win_width;
-	fdf->win_height = win_height;
-	*/
+	//mlx_get_screen_size(fdf->mlx, &screen_width, &screen_height);
 	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
 	if (fdf->win == NULL)
 	{

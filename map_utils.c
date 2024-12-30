@@ -50,26 +50,26 @@ int	parse_color(char *value)
 	return (DEFAULT_COLOR);
 }
 
-/*
 int	scale_win(t_map *map, int display_size, char type)
 {
 	int	res;
-	
+	int	max_size;
+
 	res = 0;
+	max_size = display_size * 0.8;
 	if (type == 'W')
 	{
-		if (map->width * 2 < display_size)
+		if (map->width * 10 < max_size)
 			return (map->width * 10);
 		else
-			return (display_size);
+			return (max_size);
 	}
 	else if (type == 'H')
 	{
-		if (map->height * 2 < display_size)
+		if (map->height * 2 < max_size)
 			return (map->height * 10);
 		else
-			return (display_size);
+			return (max_size);
 	}
 	return (res);
 }
-*/

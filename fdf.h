@@ -34,6 +34,10 @@
 #  define DEFAULT_COLOR 0xFFFFFF
 # endif
 
+# ifndef MIN_SCALE
+#  define MIN_SCALE 1.5
+# endif
+
 typedef struct s_point
 {
 	int	x;
@@ -66,8 +70,8 @@ typedef struct s_fdf
 {
 	void	*mlx;
 	void	*win;
-//	int		win_width;
-//	int		win_height;
+	int		win_width;
+	int		win_height;
 	t_img	img;
 	t_map	map;
 }	t_fdf;
