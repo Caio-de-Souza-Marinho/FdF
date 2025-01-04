@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
 void	create_list(t_listg **list, int fd);
 void	append(t_listg **list, char *buf, int fd);

@@ -60,6 +60,8 @@ SRCS		= ${BOOLEAN_DIR}/ft_isalnum.c \
 		  ${STRING_DIR}/ft_substr.c \
 		  ${STRING_DIR}/ft_tolower.c \
 		  ${STRING_DIR}/ft_toupper.c \
+		  ${STRING_DIR}/ft_atoi_base.c \
+		  ${STRING_DIR}/ft_word_count.c \
 		  ${GNL_DIR}/get_next_line.c \
 		  ${GNL_DIR}/get_next_line_utils.c \
 		  ${FT_PRINTF_DIR}/ft_printf.c \

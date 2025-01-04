@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
 static int	init_data(t_data *data, const char *format);
 static void	render_format(t_data *data);
