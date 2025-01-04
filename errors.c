@@ -22,5 +22,7 @@ void	error(int exit_code)
 		ft_printf("Cannot initialize fdf\n");
 	else if (exit_code == 3)
 		ft_printf("Map not found\n");
+	else if (exit_code == 4)
+		ft_printf("Found wrong line length. Exiting.\n");
 	exit(exit_code);
 }

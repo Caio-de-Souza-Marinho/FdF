@@ -10,7 +10,7 @@ LIBFT_DIR	= lib/libft/
 LIBFT_LIB	= ${LIBFT_DIR}libft.a
 MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
-TEST_FILE	?= maps/teste.fdf
+TEST_FILE	?= maps/teste1.fdf
 
 SRCS		= $(SRC_DIR)main.c \
 		  ${SRC_DIR}init_structs.c \

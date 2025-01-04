@@ -13,6 +13,7 @@
 #include "fdf.h"
 
 void	print_coords(char *s, t_map *map);
+static void	free_fdf(t_fdf *fdf);
 
 int	main(int argc, char *argv[])
 {
@@ -26,12 +27,13 @@ int	main(int argc, char *argv[])
 	print_coords("After center_to_origin", fdf->map);
 	//render(fdf);
 	//mlx_loop(fdf->mlx);
+	free_fdf(fdf);
 	return (0);
 }
 
+// debug: print the map coordinates
 void	print_coords(char *s, t_map *map)
 {
-	// debug: print the map
 	printf("%s\n", s);
 	for (int y = 0; y < map->max_y; y++)
 	{
@@ -44,5 +46,29 @@ void	print_coords(char *s, t_map *map)
 	     			map->coordinates[x][y].color);
 		}
 		printf("\n");
+	}
+}
+
+static void	free_fdf(t_fdf *fdf)
+{
+	int	x;
+
+	if (fdf)
+	{
+		if (fdf->map)
+		{
+			if (fdf->map->coordinates)
+			{
+				x = 0;
+				while (x < fdf->map->max_x)
+				{
+					free(fdf->map->coordinates[x]);
+					x++;
+				}
+				free(fdf->map->coordinates);
+			}
+			free(fdf->map);
+		}
+		free(fdf);
 	}
 }

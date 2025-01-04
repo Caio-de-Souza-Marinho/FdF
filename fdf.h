@@ -22,8 +22,8 @@
 // math
 # include <math.h>
 
-#  define WINDOW_WIDTH 1020
-#  define WINDOW_HEIGHT 900
+# define WINDOW_WIDTH 1020
+# define WINDOW_HEIGHT 900
 
 // STRUCTS
 

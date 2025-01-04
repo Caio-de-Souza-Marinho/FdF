@@ -63,7 +63,7 @@ static int	get_width(char *file_name)
 			break ;
 		new_width = ft_word_count(line, ' ');
 		if (width != new_width)
-			return (0);
+			error(4);
 		free(line);
 	}
 	close(fd);
