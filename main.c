@@ -6,86 +6,43 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:55:09 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/30 20:15:25 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/01 19:17:52 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "lib/minilibx-linux/mlx.h"
 
-static int	init_window(t_fdf *fdf);
-static void	init_img(t_fdf *fdf);
+void	print_coords(char *s, t_map *map);
 
 int	main(int argc, char *argv[])
 {
-	t_fdf	fdf;
+	char	*file_name;
+	t_fdf	*fdf;
 
 	if (argc != 2)
-	{
-		ft_printf("ERROR: Invalid input\nUsage: .fdf/ <map_file>\n");
-		return (1);
-	}
-	fdf.map.path = argv[1];
-	init_map(&fdf.map);
-	if (!init_window(&fdf))
-	{
-		ft_printf("ERROR: Failed to initialize the window\n");
-		free_map(&fdf.map);
-		return (1);
-	}
-	render_map(&fdf);
-	mlx_put_image_to_window(fdf.mlx, fdf.win, fdf.img.img, 0, 0);
-	mlx_loop(fdf.mlx);
-	free_map(&fdf.map);
+		error(1);
+	file_name = argv[1];
+	fdf = init_fdf(file_name);
+	print_coords("After center_to_origin", fdf->map);
+	//render(fdf);
+	//mlx_loop(fdf->mlx);
 	return (0);
 }
 
-static int	init_window(t_fdf *fdf)
+void	print_coords(char *s, t_map *map)
 {
-	fdf->mlx = mlx_init();
-	if (fdf->mlx == NULL)
+	// debug: print the map
+	printf("%s\n", s);
+	for (int y = 0; y < map->max_y; y++)
 	{
-		ft_printf("ERROR: MLX initialization failed\n");
-		return (0);
+		for (int x = 0; x < map->max_x; x++)
+		{
+			printf("(%f, %f, %f, %d) ",
+	     			map->coordinates[x][y].x, 
+	     			map->coordinates[x][y].y,
+	     			map->coordinates[x][y].z, 
+	     			map->coordinates[x][y].color);
+		}
+		printf("\n");
 	}
-	fdf->win = mlx_new_window(fdf->mlx, WIN_WIDTH, WIN_HEIGHT, "FdF");
-	if (fdf->win == NULL)
-	{
-		free(fdf->mlx);
-		ft_printf("ERROR: Window creation failed\n");
-		return (0);
-	}
-	init_img(fdf);
-	return (1);
 }
-
-static void	init_img(t_fdf *fdf)
-{
-	int	bpp;
-	int	size_line;
-	int	endian;
-
-	fdf->img.img = mlx_new_image(fdf->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (fdf->img.img == NULL)
-		img_error(fdf, "ERROR: Image creation failed\n");
-	fdf->img.addr = mlx_get_data_addr(fdf->img.img, &bpp, &size_line, &endian);
-	if (fdf->img.addr == NULL)
-		img_addr_error(fdf, "ERROR: Failed to get image data address\n");
-	fdf->img.bits_per_pixel = bpp;
-	fdf->img.size_line = size_line;
-	fdf->img.endian = endian;
-}
-
-/*
-// debug: print the map
-for (int row = 0; row < map.height; row++)
-{
-	for (int col = 0; col < map.width; col++)
-	{
-		ft_printf("(%d, %d, %d, %#X) ", map.points[row][col].x, 
-		map.points[row][col].y, map.points[row][col].z, 
-		map.points[row][col].color);
-	}
-	ft_printf("\n");
-}
-*/

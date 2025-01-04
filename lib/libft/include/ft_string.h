@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 01:16:55 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/28 03:11:07 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/01 20:49:15 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,4 +195,12 @@ int		ft_toupper(int c);
 */
 int		ft_atoi_base(char *str, int base);
 
+/* @brief Counts the number of "words" in the given string, separeted by the
+ * delimiter "c".
+ * 
+ * @param s the string to be used
+ * @param c the delimiter character
+ * @return The number of "words" in the string s.
+*/
+int		ft_word_count(char const *s, char c);
 #endif

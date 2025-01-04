@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../include/libft.h"
+
 static int	is_blank(char c);
 static int	is_valid(char c, int base);
 static int	value_of(char c);

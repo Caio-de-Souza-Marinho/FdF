@@ -13,12 +13,10 @@ MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
 TEST_FILE	?= maps/teste.fdf
 
 SRCS		= $(SRC_DIR)main.c \
-		  $(SRC_DIR)map_parser.c \
-		  $(SRC_DIR)map_utils.c \
-		  $(SRC_DIR)errors.c \
-		  $(SRC_DIR)render.c \
-		  $(SRC_DIR)draw.c \
-		  $(SRC_DIR)bresenham.c \
+		  ${SRC_DIR}init_structs.c \
+		  ${SRC_DIR}init_utils.c \
+		  ${SRC_DIR}read.c \
+		  ${SRC_DIR}errors.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 

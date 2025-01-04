@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
 static int	isinset(char c, char const *set);
 static char	*res_str(char const *s1, size_t start, size_t len);

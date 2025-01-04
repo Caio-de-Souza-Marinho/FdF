@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
 static void	set_padding_zeros(t_data *data);
 static void	set_padding_zeros_pt_2(t_data *data);

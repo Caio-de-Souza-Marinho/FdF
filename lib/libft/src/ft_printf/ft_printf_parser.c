@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/libft.h"
 
 static void	parse_flags(t_data *data);
 static void	get_value(t_data *data, int *value);
