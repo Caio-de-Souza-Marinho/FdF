@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/02 03:24:35 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 17:22:11 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@
 
 # define WINDOW_WIDTH 1020
 # define WINDOW_HEIGHT 900
+
+// Enum for projection names and boolean
+enum e_projection
+{
+	ISOMETRIC,
+	PERSPECTIVE,
+	TOP
+};
+
+enum e_bool
+{
+	FALSE,
+	TRUE
+};
 
 // STRUCTS
 
@@ -101,12 +115,15 @@ typedef struct s_fdf
 t_fdf	*init_fdf(char *file_name);
 t_map	*init_map(void);
 t_point	**init_coordinates(int width, int depth);
+t_img	*init_image(void *mlx);
+t_cam	*init_cam(t_map *map);
 
 // read
 t_map	*read_map(char *file_name);
 
 // map utils
 void	center_to_origin(t_map *map);
+float	scale_to_fit(t_map *map);
 
 // errors
 void	error(int exit_code);
@@ -122,5 +139,12 @@ void	bresenham(t_img *img, int *coords, int color);
 
 // debug
 void	print_coords(char *s, t_map *map);
+
+// close
+void	close_map(t_fdf *fdf, int exit_code);
+void	close_all(t_fdf *fdf, int exit_code);
+
+// utils
+float	min(float a, float b);
 
 #endif
