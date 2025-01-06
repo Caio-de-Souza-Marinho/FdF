@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/05 17:17:30 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 17:19:15 by caide-so         ###   ########.fr       */
+/*   Created: 2025/01/05 22:53:12 by caide-so          #+#    #+#             */
+/*   Updated: 2025/01/05 22:57:19 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float	min(float a, float b)
+void	rotate(t_cam *cam, t_line *line)
 {
-	if (a < b)
-		return (a);
-	else
-		return (b);
-}
-
-float	absolute(float nbr)
-{
-	if (nbr < 0)
-		return (-nbr);
-	else
-		return (nbr);
-}
-
-float	max(float a, float b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
+	(void)cam;
+	(void)line;
+	/*
+	rotate_x(line, cam->alpha);
+	rotate_y(line, cam->beta);
+	rotate_z(line, cam->gamma);
+	*/
 }

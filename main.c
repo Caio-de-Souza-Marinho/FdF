@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:55:09 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/01 19:17:52 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 17:26:32 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	main(int argc, char *argv[])
 		error(1);
 	file_name = argv[1];
 	fdf = init_fdf(file_name);
-	print_coords("After center_to_origin", fdf->map);
-	//render(fdf);
+	render(fdf);
 	//mlx_loop(fdf->mlx);
 	free_fdf(fdf);
 	return (0);

@@ -11,39 +11,48 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "lib/libft/include/mem.h"
 
-static void	draw_line(t_img *img, t_point *p1, t_point *p2);
+void	pixel_to_image(t_img *image, float x, float y, int color);
 
-void	draw(t_fdf *fdf)
+// Clears the image and fills it with a background color
+void	clear_image(t_img *image, int image_size)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 
-	i = 0;
-	while (i < fdf->map.height)
+	ft_bzero(image->buffer, image_size);
+	y = 0;
+	while (y < WINDOW_HEIGHT)
 	{
-		j = 0;
-		while (j < fdf->map.width)
+		x = 0;
+		while (x < WINDOW_WIDTH)
 		{
-			if (j < fdf->map.width - 1)
-				draw_line(&fdf->img, &fdf->map.points[i][j],
-					&fdf->map.points[i][j + 1]);
-			if (i < fdf->map.height - 1)
-				draw_line(&fdf->img, &fdf->map.points[i][j],
-					&fdf->map.points[i + 1][j]);
-			j++;
+			pixel_to_image(image, x, y, BACKGROUND_DEFAULT);
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
-static void	draw_line(t_img *img, t_point *p1, t_point *p2)
+// Set the color of a single pixel in the image at position (x, y);
+void	pixel_to_image(t_img *image, float x, float y, int color)
 {
-	int	coords[4];
+	int	pixel;
 
-	coords[0] = p1->screen_x;
-	coords[1] = p1->screen_y;
-	coords[2] = p2->screen_x;
-	coords[3] = p2->screen_y;
-	bresenham(img, coords, p1->color);
+	pixel = ((int)y * image->size_line) + ((int)x * 4);
+	if (image->endian == 1)
+	{
+		image->buffer[pixel + 0] = (color >> 24);
+		image->buffer[pixel + 1] = (color >> 16) & 0xff;
+		image->buffer[pixel + 2] = (color >> 8) & 0xff;
+		image->buffer[pixel + 3] = (color) & 0xff;
+	}
+	else if (image->endian == 0)
+	{
+		image->buffer[pixel + 0] = (color) & 0xff;
+		image->buffer[pixel + 1] = (color >> 8) & 0xff;
+		image->buffer[pixel + 2] = (color >> 16) & 0xff;
+		image->buffer[pixel + 3] = (color >> 24);
+	}
 }

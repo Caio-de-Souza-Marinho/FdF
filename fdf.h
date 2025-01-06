@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 17:22:11 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 22:57:36 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@
 
 # define WINDOW_WIDTH 1020
 # define WINDOW_HEIGHT 900
+# define MAX_PIXEL 1080000
+
+# define C_WHITE	0xffffff
+# define C_GREY		0x303030
+
+# define C_RED		0xff0000
+# define C_GREEN	0x00ff00
+# define C_BLUE		0x0000ff
+
+# define C_ORANGE	0xffa500
+# define C_BLUEY	0x0492c2
+
+# define BACKGROUND_DEFAULT C_GREY
+# define LINE_DEFAULT C_WHITE
 
 // Enum for projection names and boolean
 enum e_projection
@@ -69,6 +83,22 @@ typedef struct s_line
 	float	transform_z;
 }	t_line;
 
+// Color struct: valid for line.
+typedef struct s_color
+{
+	int	start_color;
+	int	start_r;
+	int	start_g;
+	int	start_b;
+	int	end_color;
+	int	end_r;
+	int	end_g;
+	int	end_b;
+	int	delta_r;
+	int	delta_g;
+	int	delta_b;
+}	t_color;
+
 // Image struct: holds information on the image pointers given by MiniLibX
 // and the buffer pointer fron which the final image is printed, besides
 // the current line to be transfered to the buffer.
@@ -88,6 +118,7 @@ typedef struct s_img
 typedef struct s_cam
 {
 	int		projection;
+	int		color_pallet;
 	float	scale_factor;
 	float	scale_z;
 	float	move_x;
@@ -117,6 +148,7 @@ t_map	*init_map(void);
 t_point	**init_coordinates(int width, int depth);
 t_img	*init_image(void *mlx);
 t_cam	*init_cam(t_map *map);
+t_line	*init_line(t_point start, t_point end, t_fdf *fdf);
 
 // read
 t_map	*read_map(char *file_name);
@@ -129,10 +161,11 @@ float	scale_to_fit(t_map *map);
 void	error(int exit_code);
 
 // render
-void	render_map(t_fdf *fdf);
+void	render(t_fdf *fdf);
 
 // draw
-void	draw(t_fdf *fdf);
+void	clear_image(t_img *image, int image_size);
+void	pixel_to_image(t_img *image, float x, float y, int color);
 
 // bresenham
 void	bresenham(t_img *img, int *coords, int color);
@@ -146,5 +179,14 @@ void	close_all(t_fdf *fdf, int exit_code);
 
 // utils
 float	min(float a, float b);
+float	absolute(float nbr);
+float	max(float a, float b);
+
+// color
+t_color	*color_pallet_init(int min_color, int max_color);
+int		get_color(t_color *color, int i_line, int line_size);
+
+// rotate
+void	rotate(t_cam *cam, t_line *line);
 
 #endif

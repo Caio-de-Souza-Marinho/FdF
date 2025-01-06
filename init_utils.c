@@ -6,12 +6,13 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:29:10 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 17:15:08 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:06:53 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+// Allocates and initializes the 2D matrix of t_point structs
 t_point	**init_coordinates(int width, int depth)
 {
 	t_point	**coordinates;
@@ -41,6 +42,8 @@ t_point	**init_coordinates(int width, int depth)
 	return (coordinates);
 }
 
+// Adjusts all points so the map is centered at the origin (0, 0) in the 3D
+// space.
 void	center_to_origin(t_map *map)
 {
 	int	x;

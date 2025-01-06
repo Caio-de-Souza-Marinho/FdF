@@ -26,5 +26,7 @@ void	error(int exit_code)
 		ft_printf("Found wrong line length. Exiting.\n");
 	else if (exit_code == 5)
 		ft_printf("Cannot create image.\n");
+	else if (exit_code == 6)
+		ft_printf("Unable to render.\n");
 	exit(exit_code);
 }

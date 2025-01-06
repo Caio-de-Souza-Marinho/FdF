@@ -6,63 +6,93 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 01:06:49 by caide-so          #+#    #+#             */
-/*   Updated: 2024/12/30 20:10:27 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 17:31:45 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	apply_isometric_projection(t_map *map, double scale);
-static void	iso_proj(t_point *point, double scale);
+static void	render_line(t_fdf *fdf, t_point start, t_point end);
+static void	apply_colors(t_fdf *fdf, t_point *point);
 
-void	render_map(t_fdf *fdf)
+// Clear and set the background color of the image. (clear_image())
+// For every point, calls render_line() for the right and the bottom points.
+void	render(t_fdf *fdf)
 {
-	double	scale_x;
-	double	scale_y;
-	double	scale;
+	int	x;
+	int	y;
 
-	scale_x = (double)WIN_WIDTH / (fdf->map.width * 10);
-	scale_y = (double)WIN_HEIGHT / (fdf->map.height * 10);
-	if (scale_x < scale_y)
-		scale = scale_x;
-	else
-		scale = scale_y;
-	if (scale < MIN_SCALE)
-		scale = MIN_SCALE;
-	apply_isometric_projection(&fdf->map, scale);
-	draw(fdf);
-}
-
-static void	apply_isometric_projection(t_map *map, double scale)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < map->height)
+	clear_image(fdf->img, MAX_PIXEL * 4);
+	y = 0;
+	while (y < fdf->map->max_y)
 	{
-		j = 0;
-		while (j < map->width)
+		x = 0;
+		while (x < fdf->map->max_x)
 		{
-			iso_proj(&map->points[i][j], scale);
-			j++;
+			if (x < fdf->map->max_x - 1)
+				render_line(fdf, fdf->map->coordinates[x][y],
+					fdf->map->coordinates[x + 1][y]);
+			if (y < fdf->map->max_y - 1)
+				render_line(fdf, fdf->map->coordinates[x][y],
+					fdf->map->coordinates[x][y + 1]);
+			x++;
 		}
-		i++;
+		y++;
 	}
+	//mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 }
 
-static void	iso_proj(t_point *point, double scale)
+// Actual render pipelilne
+// Scale z values
+// Apply colors
+// Initialize line struct
+static void	render_line(t_fdf *fdf, t_point start, t_point end)
 {
-	int		x;
-	int		y;
-	int		z;
-	double	angle;
+	start.z *= fdf->cam->scale_z;
+	end.z *= fdf->cam->scale_z;
+	apply_colors(fdf, &start);
+	apply_colors(fdf, &end);
+	fdf->img->line = init_line(start, end, fdf);
+	if (fdf->img->line == NULL)
+		close_all(fdf, 6);
+	/*
+	rotate(fdf->cam, fdf->img->line);
+	project(fdf->cam, fdf->img->line);
+	transform(fdf->cam, fdf->img->line);
+	bresenham(fdf, fdf->img->line->start, fdf->img->line->end);
+	*/
+	free(fdf->img->line);
+}
 
-	x = point->x;
-	y = point->y;
-	z = point->z;
-	angle = M_PI / 6;
-	point->screen_x = ((x - y) * cos(angle) * scale) + ((double)WIN_WIDTH / 2);
-	point->screen_y = ((x + y) * sin(angle) - z) * scale
-		+ ((double)WIN_HEIGHT / 2);
+// Assign color to the lines
+// Default is white
+// For positive z values - gratient color between grey and orange
+// For negative z values - gratient color between grey and blue
+static void	apply_colors(t_fdf *fdf, t_point *point)
+{
+	t_color	*col;
+
+	col = NULL;
+	if (fdf->cam->color_pallet == FALSE)
+	{
+		if (point->color == -1)
+			point->color = LINE_DEFAULT;
+	}
+	else
+	{
+		if (point->z >= 0)
+		{
+			col = color_pallet_init(C_GREY, C_ORANGE);
+			point->color = get_color(col, absolute(point->z),
+					absolute(fdf->map->max_z));
+			free(col);
+		}
+		else
+		{
+			col = color_pallet_init(C_GREY, C_BLUEY);
+			point->color = get_color(col, absolute(point->z),
+					absolute(fdf->map->max_z));
+			free(col);
+		}
+	}
 }
