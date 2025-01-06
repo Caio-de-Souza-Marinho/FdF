@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:10:12 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/01 19:45:49 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 13:56:47 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ void	error(int exit_code)
 		ft_printf("Map not found\n");
 	else if (exit_code == 4)
 		ft_printf("Found wrong line length. Exiting.\n");
+	else if (exit_code == 5)
+		ft_printf("Cannot create image.\n");
+	else if (exit_code == 6)
+		ft_printf("Unable to render.\n");
 	exit(exit_code);
 }

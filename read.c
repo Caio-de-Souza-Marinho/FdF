@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 16:10:12 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/02 17:21:04 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/05 23:10:54 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	get_depth(char *file_name);
 static void	get_points(char *file_name, t_map *map);
 static void	fill_point(char *point, t_map *map, int coord_x, int coord_y);
 
+// Reads the map file and converts it into a t_map struct
 t_map	*read_map(char *file_name)
 {
 	t_map	*map;
@@ -38,11 +39,12 @@ t_map	*read_map(char *file_name)
 		return (NULL);
 	}
 	get_points(file_name, map);
-	print_coords("Before center_to_origin", map);
 	center_to_origin(map);
 	return (map);
 }
 
+// Determines the number of columns (width) in the map by counting "words" in
+// each line.
 static int	get_width(char *file_name)
 {
 	int		fd;
@@ -70,6 +72,7 @@ static int	get_width(char *file_name)
 	return (width);
 }
 
+// Counts the number of valid lines (depth/height)
 static int	get_depth(char *file_name)
 {
 	int		fd;
@@ -91,6 +94,8 @@ static int	get_depth(char *file_name)
 	return (depth);
 }
 
+// Reads each line, splits it into points, and populates the 2D matrix of
+// t_point.
 static void	get_points(char *file_name, t_map *map)
 {
 	int		fd;
@@ -120,6 +125,8 @@ static void	get_points(char *file_name, t_map *map)
 	close(fd);
 }
 
+// Parses each point's data, including z (height) and optional color,
+// converting the strings to integers.
 static void	fill_point(char *point, t_map *map, int coord_x, int coord_y)
 {
 	char	**info;
