@@ -39,7 +39,7 @@ void	render(t_fdf *fdf)
 		}
 		y++;
 	}
-	//mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
 }
 
 // Actual render pipelilne
@@ -55,8 +55,8 @@ static void	render_line(t_fdf *fdf, t_point start, t_point end)
 	fdf->img->line = init_line(start, end, fdf);
 	if (fdf->img->line == NULL)
 		close_all(fdf, 6);
-	/*
 	rotate(fdf->cam, fdf->img->line);
+	/*
 	project(fdf->cam, fdf->img->line);
 	transform(fdf->cam, fdf->img->line);
 	bresenham(fdf, fdf->img->line->start, fdf->img->line->end);

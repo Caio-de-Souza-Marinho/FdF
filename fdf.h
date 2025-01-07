@@ -188,5 +188,8 @@ int		get_color(t_color *color, int i_line, int line_size);
 
 // rotate
 void	rotate(t_cam *cam, t_line *line);
+void	rotate_x(t_line *line, double angle);
+void	rotate_y(t_line *line, double angle);
+void	rotate_z(t_line *line, double angle);
 
 #endif
