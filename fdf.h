@@ -39,6 +39,8 @@
 # define BACKGROUND_DEFAULT C_GREY
 # define LINE_DEFAULT C_WHITE
 
+# define ANG_30 0.52359877
+
 // Enum for projection names and boolean
 enum e_projection
 {
@@ -191,5 +193,8 @@ void	rotate(t_cam *cam, t_line *line);
 void	rotate_x(t_line *line, double angle);
 void	rotate_y(t_line *line, double angle);
 void	rotate_z(t_line *line, double angle);
+
+// projection
+void	project(t_cam *cam, t_line *line);
 
 #endif

@@ -23,8 +23,8 @@ SRCS		= $(SRC_DIR)main.c \
 		  ${SRC_DIR}utils.c \
 		  ${SRC_DIR}color.c \
 		  ${SRC_DIR}rotate.c \
-		  #${SRC_DIR}project.c \
-		  ${SRC_DIR}transform.c \
+		  ${SRC_DIR}project.c \
+		  #${SRC_DIR}transform.c \
 
 OBJS		= ${SRCS:${SRC_DIR}%.c=${OBJ_DIR}%.o}
 

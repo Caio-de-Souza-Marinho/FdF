@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 01:06:49 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 17:31:45 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/07 18:56:37 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ static void	render_line(t_fdf *fdf, t_point start, t_point end)
 	if (fdf->img->line == NULL)
 		close_all(fdf, 6);
 	rotate(fdf->cam, fdf->img->line);
-	/*
 	project(fdf->cam, fdf->img->line);
+	/*
 	transform(fdf->cam, fdf->img->line);
 	bresenham(fdf, fdf->img->line->start, fdf->img->line->end);
 	*/
