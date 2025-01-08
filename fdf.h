@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 22:57:36 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:04:58 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,9 +168,7 @@ void	render(t_fdf *fdf);
 // draw
 void	clear_image(t_img *image, int image_size);
 void	pixel_to_image(t_img *image, float x, float y, int color);
-
-// bresenham
-void	bresenham(t_img *img, int *coords, int color);
+void	bresenham(t_fdf *fdf, t_point start, t_point end);
 
 // debug
 void	print_coords(char *s, t_map *map);
@@ -187,6 +185,7 @@ float	max(float a, float b);
 // color
 t_color	*color_pallet_init(int min_color, int max_color);
 int		get_color(t_color *color, int i_line, int line_size);
+t_color	*color_init(t_point start, t_point end);
 
 // rotate
 void	rotate(t_cam *cam, t_line *line);
@@ -196,5 +195,10 @@ void	rotate_z(t_line *line, double angle);
 
 // projection
 void	project(t_cam *cam, t_line *line);
+
+// transform
+void	transform(t_cam *cam, t_line *line);
+void	scale(t_line *line, int scale_factor);
+void	translate(t_line *line, int move_x, int move_y);
 
 #endif
