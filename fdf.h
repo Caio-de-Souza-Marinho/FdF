@@ -22,7 +22,7 @@
 // math
 # include <math.h>
 
-# define WINDOW_WIDTH 1020
+# define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 900
 # define MAX_PIXEL 1080000
 
