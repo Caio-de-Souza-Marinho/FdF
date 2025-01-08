@@ -6,14 +6,11 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:55:09 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 17:26:32 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 19:10:08 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	print_coords(char *s, t_map *map);
-static void	free_fdf(t_fdf *fdf);
 
 int	main(int argc, char *argv[])
 {
@@ -25,11 +22,12 @@ int	main(int argc, char *argv[])
 	file_name = argv[1];
 	fdf = init_fdf(file_name);
 	render(fdf);
-	//mlx_loop(fdf->mlx);
-	free_fdf(fdf);
+	mlx_loop(fdf->mlx);
+	//free_fdf(fdf);
 	return (0);
 }
 
+/*
 // debug: print the map coordinates
 void	print_coords(char *s, t_map *map)
 {
@@ -71,3 +69,4 @@ static void	free_fdf(t_fdf *fdf)
 		free(fdf);
 	}
 }
+*/
