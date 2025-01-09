@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 22:02:07 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 22:02:07 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 18:59:12 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,26 @@ static int	color_gradient(t_color *color, float progress)
 	else if (b > 255)
 		b = 255;
 	return (color->start_color + r + g + b);
+}
+
+t_color	*color_init(t_point start, t_point end)
+{
+	t_color	*color;
+
+	color = malloc(sizeof(t_color));
+	if (color == NULL)
+		return (NULL);
+	color->start_color = start.color;
+
+	color->start_r = (C_RED & start.color) >> 16;
+	color->start_g = (C_GREEN & start.color) >> 8;
+	color->start_b = (C_BLUE & start.color);
+	color->end_color = end.color;
+	color->end_r = (C_RED & end.color) >> 16;
+	color->end_g = (C_GREEN & end.color) >> 8;
+	color->end_b = (C_BLUE & end.color);
+	color->delta_r = (color->end_r - color->start_r);
+	color->delta_g = (color->end_g - color->start_g);
+	color->delta_b = (color->end_b - color->start_b);
+	return (color);
 }

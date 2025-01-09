@@ -6,14 +6,14 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:55:09 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 17:26:32 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:21:35 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "lib/minilibx-linux/mlx.h"
 
-void	print_coords(char *s, t_map *map);
-static void	free_fdf(t_fdf *fdf);
+static int	expose_handle(t_fdf *fdf);
 
 int	main(int argc, char *argv[])
 {
@@ -25,11 +25,19 @@ int	main(int argc, char *argv[])
 	file_name = argv[1];
 	fdf = init_fdf(file_name);
 	render(fdf);
-	//mlx_loop(fdf->mlx);
-	free_fdf(fdf);
+	mlx_key_hook(fdf->win, &key_handle, fdf);
+	mlx_expose_hook(fdf->win, &expose_handle, fdf);
+	mlx_loop(fdf->mlx);
 	return (0);
 }
 
+static int	expose_handle(t_fdf *fdf)
+{
+	render(fdf);
+	return (0);
+}
+
+/*
 // debug: print the map coordinates
 void	print_coords(char *s, t_map *map)
 {
@@ -71,3 +79,4 @@ static void	free_fdf(t_fdf *fdf)
 		free(fdf);
 	}
 }
+*/

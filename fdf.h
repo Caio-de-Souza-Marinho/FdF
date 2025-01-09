@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 22:57:36 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:36:13 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // math
 # include <math.h>
 
-# define WINDOW_WIDTH 1020
+# define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 900
 # define MAX_PIXEL 1080000
 
@@ -38,6 +38,11 @@
 
 # define BACKGROUND_DEFAULT C_GREY
 # define LINE_DEFAULT C_WHITE
+# define C_TEXT C_WHITE
+
+# define ANG_30 0.52359877
+# define ANG_1	0.01745329
+# define ANG_45 0.78539816
 
 // Enum for projection names and boolean
 enum e_projection
@@ -156,6 +161,7 @@ t_map	*read_map(char *file_name);
 // map utils
 void	center_to_origin(t_map *map);
 float	scale_to_fit(t_map *map);
+void	reset(t_fdf *fdf);
 
 // errors
 void	error(int exit_code);
@@ -166,9 +172,7 @@ void	render(t_fdf *fdf);
 // draw
 void	clear_image(t_img *image, int image_size);
 void	pixel_to_image(t_img *image, float x, float y, int color);
-
-// bresenham
-void	bresenham(t_img *img, int *coords, int color);
+void	bresenham(t_fdf *fdf, t_point start, t_point end);
 
 // debug
 void	print_coords(char *s, t_map *map);
@@ -185,8 +189,51 @@ float	max(float a, float b);
 // color
 t_color	*color_pallet_init(int min_color, int max_color);
 int		get_color(t_color *color, int i_line, int line_size);
+t_color	*color_init(t_point start, t_point end);
 
 // rotate
 void	rotate(t_cam *cam, t_line *line);
+void	rotate_x(t_line *line, double angle);
+void	rotate_y(t_line *line, double angle);
+void	rotate_z(t_line *line, double angle);
+
+// projection
+void	project(t_cam *cam, t_line *line);
+
+// transform
+void	transform(t_cam *cam, t_line *line);
+void	scale(t_line *line, int scale_factor);
+void	translate(t_line *line, int move_x, int move_y);
+
+// hooks
+int		key_handle(int keycode, t_fdf *fdf);
+
+// menu
+void	print_menu(t_fdf *fdf);
+
+# define KEY_ESC	65307
+# define KEY_LEFT	65361
+# define KEY_UP		65362
+# define KEY_RIGHT	65363
+# define KEY_DOWN	65364
+
+# define KEY_PLUS	61
+# define KEY_MINUS	45
+# define KEY_SPACE	32
+
+# define KEY_Z		122
+# define KEY_X		120
+# define KEY_P		112
+# define KEY_I		105
+# define KEY_O		111
+# define KEY_L		108
+# define KEY_R		114
+# define KEY_A		97
+# define KEY_S		115
+# define KEY_D		100
+# define KEY_Q		113
+# define KEY_W		119
+# define KEY_E		101
+
 
 #endif
