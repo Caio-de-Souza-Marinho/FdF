@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:43:25 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/08 21:36:13 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 22:19:08 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 
 # define C_WHITE	0xffffff
 # define C_GREY		0x303030
+# define C_BLACK	0x000000
 
 # define C_RED		0xff0000
 # define C_GREEN	0x00ff00
@@ -36,7 +37,7 @@
 # define C_ORANGE	0xffa500
 # define C_BLUEY	0x0492c2
 
-# define BACKGROUND_DEFAULT C_GREY
+# define BACKGROUND_DEFAULT C_BLACK
 # define LINE_DEFAULT C_WHITE
 # define C_TEXT C_WHITE
 
@@ -234,6 +235,5 @@ void	print_menu(t_fdf *fdf);
 # define KEY_Q		113
 # define KEY_W		119
 # define KEY_E		101
-
 
 #endif
