@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 21:29:10 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/05 23:06:53 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 20:58:49 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,15 @@ float	scale_to_fit(t_map *map)
 	if (scale_factor < 4)
 		return (2);
 	return (scale_factor / 2);
+}
+
+void	reset(t_fdf *fdf)
+{
+	fdf->cam->scale_factor = scale_to_fit(fdf->map);
+	fdf->cam->scale_z = 1;
+	fdf->cam->move_x = WINDOW_WIDTH / 2;
+	fdf->cam->move_y = WINDOW_HEIGHT / 2;
+	fdf->cam->alpha = 0;
+	fdf->cam->beta = 0;
+	fdf->cam->gamma = 0;
 }

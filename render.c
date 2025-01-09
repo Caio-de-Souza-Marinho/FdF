@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 01:06:49 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/08 18:46:39 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:28:07 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	render(t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img->img, 0, 0);
+	print_menu(fdf);
 }
 
 // Actual render pipelilne

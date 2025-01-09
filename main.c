@@ -6,11 +6,14 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 13:55:09 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/08 19:10:08 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/08 21:21:35 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "lib/minilibx-linux/mlx.h"
+
+static int	expose_handle(t_fdf *fdf);
 
 int	main(int argc, char *argv[])
 {
@@ -22,8 +25,15 @@ int	main(int argc, char *argv[])
 	file_name = argv[1];
 	fdf = init_fdf(file_name);
 	render(fdf);
+	mlx_key_hook(fdf->win, &key_handle, fdf);
+	mlx_expose_hook(fdf->win, &expose_handle, fdf);
 	mlx_loop(fdf->mlx);
-	//free_fdf(fdf);
+	return (0);
+}
+
+static int	expose_handle(t_fdf *fdf)
+{
+	render(fdf);
 	return (0);
 }
 
