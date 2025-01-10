@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # This very basic script simulate user inputs for the CI
 # Feel free to update, improve or remove it if proper 
@@ -6,11 +6,11 @@
 
 set -e
 
-BOLD="\033[1m"
-RESET="\033[0m"
-LIGHT_RED="\033[91m"
-LIGHT_GREEN="\033[92m"
-LIGHT_CYAN="\033[96m"
+BOLD="\e[1m"
+RESET="\e[0m"
+LIGHT_RED="\e[91m"
+LIGHT_GREEN="\e[92m"
+LIGHT_CYAN="\e[96m"
 
 logging(){
 	local type=$1; shift
@@ -47,7 +47,7 @@ sigint_handler(){
 
 # look at test/main.c and run ./mlx-test to understand what this function does
 test_default_main(){
-	${MAKE} -f Makefile.gen all
+	make -f Makefile.gen all
 	./mlx-test &
 	PID="$!"
 	log_info "./mlx-test running in background, pid:" $PID
@@ -80,10 +80,6 @@ test_default_main(){
 }
 
 main(){
-	case $(uname) in
-		FreeBSD) MAKE=gmake ;;
-		*) MAKE=make ;;
-	esac
 	cd $(dirname $0)
 	trap at_exit		EXIT
 	trap sigint_handler	INT
