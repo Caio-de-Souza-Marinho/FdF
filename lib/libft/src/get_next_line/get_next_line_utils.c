@@ -6,12 +6,13 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:35:34 by caide-so          #+#    #+#             */
-/*   Updated: 2024/11/17 15:27:05 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/09 21:14:50 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/libft.h"
 
+/*
 int	found_newline(t_listg *list)
 {
 	int	i;
@@ -114,3 +115,4 @@ void	dealloc(t_listg **list, t_listg *clean_node, char *buf)
 			free(clean_node);
 	}
 }
+*/
