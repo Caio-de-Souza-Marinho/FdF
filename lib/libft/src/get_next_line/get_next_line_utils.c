@@ -12,7 +12,6 @@
 
 #include "../../include/libft.h"
 
-/*
 int	found_newline(t_listg *list)
 {
 	int	i;
@@ -115,4 +114,3 @@ void	dealloc(t_listg **list, t_listg *clean_node, char *buf)
 			free(clean_node);
 	}
 }
-*/

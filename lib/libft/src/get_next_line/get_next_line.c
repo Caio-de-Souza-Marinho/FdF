@@ -12,6 +12,7 @@
 
 #include "../../include/libft.h"
 
+/*
 ssize_t	read_file(int fd, char **buffer, char **buff_read, char **line);
 char	*get_line(char **buff_read, char **line);
 
@@ -86,8 +87,8 @@ char	*get_line(char **buff_read, char **line)
 	*buff_read = NULL;
 	return (new_buff);
 }
+*/
 
-/*
 void	create_list(t_listg **list, int fd);
 void	append(t_listg **list, char *buf, int fd);
 char	*set_line(t_listg *list);
@@ -201,4 +202,3 @@ void	clean_list(t_listg **list)
 	clean_node->next = NULL;
 	dealloc(list, clean_node, buf);
 }
-*/
