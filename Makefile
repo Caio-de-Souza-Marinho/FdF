@@ -1,6 +1,6 @@
 NAME		= fdf
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -pg
 RM		= rm -rf
 
 SRC_DIR		= ./
@@ -10,7 +10,7 @@ LIBFT_DIR	= lib/libft/
 LIBFT_LIB	= ${LIBFT_DIR}libft.a
 MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
-TEST_FILE	?= maps/teste1.fdf
+TEST_FILE	?= maps/julia.fdf
 
 SRCS		= $(SRC_DIR)main.c \
 		  ${SRC_DIR}init_structs.c \
@@ -67,5 +67,13 @@ fclean:		clean
 			${RM} ${MLX_LIB}
 
 re:		fclean all
+
+# Profiling target to run the program and then analyze with gprof
+gprof:		${OBJ_DIR} ${NAME}
+			@echo "Running the program with gprof profiling..."
+			./${NAME} ${TEST_FILE}
+			@echo "Generating gprof report..."
+			gprof ${NAME} gmon.out > gprof_report.txt
+			@echo "Gprof report saved as gprof_report.txt"
 
 .PHONY:		all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 20:45:27 by caide-so          #+#    #+#             */
-/*   Updated: 2024/10/29 20:45:33 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/09 21:15:03 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_listg
 }				t_listg;
 
 char		*get_next_line(int fd);
+/*
 void		create_list(t_listg **list, int fd);
 int			found_newline(t_listg *list);
 void		append(t_listg **list, char *buf, int fd);
@@ -37,5 +38,6 @@ int			len_until_newline(t_listg *list);
 void		copy_str(t_listg *list, char *str);
 void		clean_list(t_listg **list);
 void		dealloc(t_listg **list, t_listg *clean_node, char *buf);
+*/
 
 #endif

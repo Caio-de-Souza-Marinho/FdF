@@ -6,12 +6,11 @@
 /*   By: caide-so <caide-so@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 19:00:25 by caide-so          #+#    #+#             */
-/*   Updated: 2025/01/08 19:03:10 by caide-so         ###   ########.fr       */
+/*   Updated: 2025/01/09 20:53:58 by caide-so         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "lib/libft/include/mem.h"
 
 void	pixel_to_image(t_img *image, float x, float y, int color);
 
