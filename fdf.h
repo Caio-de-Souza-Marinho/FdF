@@ -29,7 +29,6 @@
 # define WINDOW_HEIGHT 900
 # define MAX_PIXEL 1080000
 
-
 # define BACKGROUND_DEFAULT C_BLACK
 # define LINE_DEFAULT C_WHITE
 # define C_TEXT C_WHITE
@@ -42,8 +41,8 @@
 enum e_projection
 {
 	ISOMETRIC,
-	PERSPECTIVE,
-	TOP
+	SIDE_PARALLEL,
+	TOP,
 };
 
 enum e_bool

@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "lib/minilibx-linux/mlx.h"
 
 static int	expose_handle(t_fdf *fdf);
+static int	close_window(t_fdf *fdf);
 
 int	main(int argc, char *argv[])
 {
@@ -26,6 +28,7 @@ int	main(int argc, char *argv[])
 	render(fdf);
 	mlx_key_hook(fdf->win, &key_handle, fdf);
 	mlx_expose_hook(fdf->win, &expose_handle, fdf);
+	mlx_hook(fdf->win, 17, 0, &close_window, fdf);
 	mlx_loop(fdf->mlx);
 	return (0);
 }
@@ -33,5 +36,11 @@ int	main(int argc, char *argv[])
 static int	expose_handle(t_fdf *fdf)
 {
 	render(fdf);
+	return (0);
+}
+
+static int	close_window(t_fdf *fdf)
+{
+	close_all(fdf, 0);
 	return (0);
 }

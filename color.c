@@ -90,7 +90,6 @@ t_color	*color_init(t_point start, t_point end)
 	if (color == NULL)
 		return (NULL);
 	color->start_color = start.color;
-
 	color->start_r = (C_RED & start.color) >> 16;
 	color->start_g = (C_GREEN & start.color) >> 8;
 	color->start_b = (C_BLUE & start.color);

@@ -26,11 +26,11 @@ int	key_handle(int keycode, t_fdf *fdf)
 		key_translate(keycode, fdf);
 	else if (keycode == KEY_PLUS || keycode == KEY_MINUS || keycode == KEY_Z
 		|| keycode == KEY_X)
-	  	key_scale(keycode, fdf);
+		key_scale(keycode, fdf);
 	else if (keycode == KEY_A || keycode == KEY_S || keycode == KEY_D
 		|| keycode == KEY_Q || keycode == KEY_W || keycode == KEY_E)
 		key_rotate(keycode, fdf);
-	else if (keycode == KEY_P || keycode == KEY_I || keycode == KEY_O) 
+	else if (keycode == KEY_P || keycode == KEY_I || keycode == KEY_O)
 		key_project(keycode, fdf);
 	else if (keycode == KEY_SPACE)
 	{
@@ -88,7 +88,7 @@ static void	key_rotate(int keycode, t_fdf *fdf)
 static void	key_project(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_P)
-		fdf->cam->projection = PERSPECTIVE;
+		fdf->cam->projection = SIDE_PARALLEL;
 	else if (keycode == KEY_I)
 		fdf->cam->projection = ISOMETRIC;
 	else if (keycode == KEY_O)
