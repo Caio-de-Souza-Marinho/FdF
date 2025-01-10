@@ -1,6 +1,6 @@
 NAME		= fdf
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -pg
 RM		= rm -rf
 
 SRC_DIR		= ./
