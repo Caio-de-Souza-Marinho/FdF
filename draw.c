@@ -77,7 +77,7 @@ void	bresenham(t_fdf *fdf, t_point start, t_point end)
 	{
 		start.color = get_color(color, i_line++, max_steps);
 		if (start.x > 0 && start.y > 0 && start.x < WINDOW_WIDTH && start.y
-      				< WINDOW_HEIGHT)
+			< WINDOW_HEIGHT)
 			pixel_to_image(fdf->img, start.x, start.y, start.color);
 		start.x += x_step;
 		start.y += y_step;
