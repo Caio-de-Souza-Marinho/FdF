@@ -1,6 +1,6 @@
 NAME		= fdf
 CC		= cc
-CFLAGS		= -Wall -Wextra -Werror -pg
+CFLAGS		= -Wall -Wextra -Werror
 RM		= rm -rf
 
 SRC_DIR		= ./
@@ -10,7 +10,7 @@ LIBFT_DIR	= lib/libft/
 LIBFT_LIB	= ${LIBFT_DIR}libft.a
 MLX_DIR		= lib/minilibx-linux/
 MLX_LIB		= ${MLX_DIR}libmlx_Linux.a
-TEST_FILE	?= maps/julia.fdf
+TEST_FILE	?= maps/teste1.fdf
 
 SRCS		= $(SRC_DIR)main.c \
 		  ${SRC_DIR}init_structs.c \
@@ -51,7 +51,7 @@ ${MLX_LIB}:
 			make -C ${MLX_DIR}
 
 leakfull:
-			valgrind --track-origins=yes --error-exitcode=42 --leak-check=full ./${NAME} ${TEST_FILE}
+			valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} ${TEST_FILE}
 
 clean:
 			@echo "Cleaning object files..."

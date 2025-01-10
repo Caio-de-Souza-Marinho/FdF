@@ -42,8 +42,8 @@
 enum e_projection
 {
 	ISOMETRIC,
-	PERSPECTIVE,
-	TOP
+	SIDE_PARALLEL,
+	TOP,
 };
 
 enum e_bool

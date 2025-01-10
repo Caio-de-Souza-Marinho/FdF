@@ -88,7 +88,7 @@ static void	key_rotate(int keycode, t_fdf *fdf)
 static void	key_project(int keycode, t_fdf *fdf)
 {
 	if (keycode == KEY_P)
-		fdf->cam->projection = PERSPECTIVE;
+		fdf->cam->projection = SIDE_PARALLEL;
 	else if (keycode == KEY_I)
 		fdf->cam->projection = ISOMETRIC;
 	else if (keycode == KEY_O)

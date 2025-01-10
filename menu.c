@@ -36,7 +36,7 @@ void	print_menu(t_fdf *fdf)
 	mlx_string_put(mlx, win, 50, y += 20, C_TEXT, "(Z Scale limited to 100%)");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "To change projection view:");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Isometric: press 'I'");
-	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Perspective: press 'P'");
+	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Side Parallel: press 'P'");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Top view: press 'O'");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Colors: press 'SPACE'");
 	mlx_string_put(mlx, win, 50, y += 35, C_TEXT, "Reset view: press 'R'");
@@ -49,8 +49,8 @@ static char	*get_projection_name(t_fdf *fdf)
 	projection = "";
 	if (fdf->cam->projection == ISOMETRIC)
 		projection = "Isometric projection";
-	else if (fdf->cam->projection == PERSPECTIVE)
-		projection = "Perspective projection";
+	else if (fdf->cam->projection == SIDE_PARALLEL)
+		projection = "Side Parallel projection";
 	else if (fdf->cam->projection == TOP)
 		projection = "Top view";
 	return (projection);

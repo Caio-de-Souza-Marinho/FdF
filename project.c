@@ -13,7 +13,7 @@
 #include "fdf.h"
 
 static void	isometric(t_line *line);
-static void	perspective(t_line *line);
+static void	side_parallel(t_line *line);
 
 // Manages which type of projections is applied to the line.
 // Projections are ways to represent 3D data on a 2D plane
@@ -21,8 +21,8 @@ void	project(t_cam *cam, t_line *line)
 {
 	if (cam->projection == ISOMETRIC)
 		isometric(line);
-	else if (cam->projection == PERSPECTIVE)
-		perspective(line);
+	else if (cam->projection == SIDE_PARALLEL)
+		side_parallel(line);
 	else if (cam->projection == TOP)
 		return ;
 }
@@ -44,22 +44,17 @@ static void	isometric(t_line *line)
 	line->end.y = new_end.y;
 }
 
-static void	perspective(t_line *line)
+static void	side_parallel(t_line *line)
 {
 	t_point	new_start;
-	t_point	new_end;
-	double	z;
+	t_point new_end;
 
-	rotate_x(line, 3 * -ANG_45);
-	z = line->start.z + line->transform_z;
-	new_start.x = line->start.x / z;
-	new_start.y = line->start.y / z;
+	new_start.x = line->start.y;
+	new_start.y = -line->start.z;
 	line->start.x = new_start.x;
 	line->start.y = new_start.y;
-	z = line->end.z + line->transform_z;
-	new_end.x = line->end.x / z;
-	new_end.y = line->end.y / z;
+	new_end.x = line->end.y;
+	new_end.y = -line->end.z;
 	line->end.x = new_end.x;
 	line->end.y = new_end.y;
-	scale(line, line->transform_z);
 }
