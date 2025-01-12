@@ -38,6 +38,7 @@ t_fdf	*init_fdf(char *file_name)
 	fdf->cam = init_cam(fdf->map);
 	if (fdf->cam == NULL)
 		close_all(fdf, 6);
+	ft_bzero(fdf->keys, sizeof(fdf->keys));
 	return (fdf);
 }
 

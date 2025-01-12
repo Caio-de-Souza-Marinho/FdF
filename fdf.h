@@ -37,6 +37,8 @@
 # define ANG_1	0.01745329
 # define ANG_45 0.78539816
 
+# define MAX_KEYS 65536
+
 // Enum for projection names and boolean
 enum e_projection
 {
@@ -136,6 +138,7 @@ typedef struct s_fdf
 	t_map	*map;
 	t_img	*img;
 	t_cam	*cam;
+	int		keys[MAX_KEYS];
 }	t_fdf;
 
 // Functions
@@ -200,8 +203,17 @@ void	translate(t_line *line, int move_x, int move_y);
 
 // hooks
 int		key_handle(int keycode, t_fdf *fdf);
+int		key_press(int keycode, t_fdf *fdf);
+int		key_release(int keycode, t_fdf *fdf);
+int		loop_hook(t_fdf *fdf);
 
 // menu
 void	print_menu(t_fdf *fdf);
+
+// key handlers
+void	key_translate(int keycode, t_fdf *fdf);
+void	key_scale(int keycode, t_fdf *fdf);
+void	key_rotate(int keycode, t_fdf *fdf);
+void	key_project(int keycode, t_fdf *fdf);
 
 #endif
