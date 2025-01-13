@@ -12,7 +12,6 @@
 
 #include "../../include/libft.h"
 
-/*
 void	ft_bzero(void *s, size_t n)
 {
 	unsigned char	*ptr;
@@ -25,10 +24,4 @@ void	ft_bzero(void *s, size_t n)
 		ptr[i] = 0;
 		i++;
 	}
-}
-*/
-
-void	ft_bzero(void *s, size_t n)
-{
-	ft_memset(s, '\0', n);
 }
