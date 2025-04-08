@@ -69,7 +69,7 @@ static int	get_width(char *file_name)
 		free(line);
 	}
 	close(fd);
-	return (width);
+	return (width - 1);
 }
 
 // Counts the number of valid lines (depth/height)
